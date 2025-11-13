@@ -40,6 +40,6 @@ const Root = () => {
   return isAuthenticated ? (
     <Navigate to="/dashboard" />
   ) : (
-    <navigate to="/login" />
+    <Navigate to="/login" />
   );
 }
