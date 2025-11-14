@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# Uploads (optional – only ignore if you don't want uploaded files in Git)
+uploads/
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+
+# Build artifacts (if you ever build)
+dist/
+build/
+coverage/
+
+# Local environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# VSCode settings
+.vscode/
