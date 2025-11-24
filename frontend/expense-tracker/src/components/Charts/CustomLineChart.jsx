@@ -11,19 +11,39 @@ import {
 
 const CustomLineChart = ({ data }) => {
 
-    const CustomTooltip = ({ active, payload }) => {
+    const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
+            
+            const dataPoint = payload[0].payload;
+            const totalAmount = dataPoint.amount;
+            const details = dataPoint.categoryDetails;
+
+            if (!details || details.length === 0) {
+                 return null;
+            }
+
             return (
-                <div className="bg-white shadow-md rounded-lg p-2 border border-gray-300">
-                    <p className="text-xs font-semibold text-purple-800 mb-1">
-                        {payload[0].payload.category}
+                <div className="bg-white shadow-md rounded-lg p-3 border border-gray-300">
+                    <p className="text-sm font-bold text-purple-800 mb-2">
+                        {label}
                     </p>
-                    <p className="text-sm text-gray-600">
-                        Amount:{" "}
-                        <span className="text-sm font-medium text-gray-900">
-                            ${payload[0].payload.amount}
+                    
+                    <p className="text-md text-gray-700 mb-1">
+                        Total:{" "}
+                        <span className="text-md font-bold text-gray-900">
+                            ${totalAmount.toFixed(2)}
                         </span>
                     </p>
+                    
+                    <p className="text-xs font-semibold text-gray-500 mt-2 border-t pt-1">
+                        Breakdown:
+                    </p>
+                    {details.map((item, index) => (
+                        <p key={index} className="text-xs text-gray-600 ml-2">
+                            {item.category}:{" "}
+                            <span className="font-medium">${item.amount.toFixed(2)}</span>
+                        </p>
+                    ))}
                 </div>
             );
         }

@@ -43,6 +43,7 @@ export const prepareExpenseBarChartData = (data = []) => {
   return chartData;
 };
 
+/*
 export const prepareIncomeBarChartData = (data = []) => {
   const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
 
@@ -57,19 +58,90 @@ export const prepareIncomeBarChartData = (data = []) => {
 
   return chartData;
 };
+*/
 
+export const prepareIncomeBarChartData = (data = []) => {
+  // 1. Aggregate income by date, collecting amounts and source details
+  const aggregatedDataMap = data.reduce((acc, item) => {
+    const dateOnly = item.date.split("T")[0]; // Key: 'YYYY-MM-DD'
+    const formattedDate = moment(dateOnly).format('Do MMM');
 
-export const prepareExpenseLineChartData = (data= []) => {
-  const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+    // Ensure amount is a number for aggregation
+    const amount = Number(item?.amount) || 0; 
 
-  const chartData = sortedData.map((item) => {
+    if (!acc[dateOnly]) {
+      // Initialize the entry for the new date
+      acc[dateOnly] = {
+        month: formattedDate,
+        amount: 0, // This will be the running total for the bar height
+        sourceDetails: [], // Array to hold all individual transaction details (source and amount)
+        dateKey: dateOnly,
+      };
+    }
+    
+    // Add the amount to the running total for this date
+    acc[dateOnly].amount += amount;
+
+    // Store the individual entry details
+    acc[dateOnly].sourceDetails.push({
+        amount: amount,
+        source: item?.source,
+    });
+
+    return acc;
+  }, {});
+
+  // 2. Convert the aggregated object back into a sorted array
+  const chartDataArray = Object.values(aggregatedDataMap);
+
+  // 3. Sort the array by date
+  chartDataArray.sort((a, b) => new Date(a.dateKey) - new Date(b.dateKey));
+
+  // 4. Map to the final structure for the bar chart
+  const finalChartData = chartDataArray.map(item => ({
+    month: item.month, 
+    amount: item.amount, // Bar height: Total income for the day
+    sourceDetails: item.sourceDetails // Tooltip breakdown
+  }));
+
+  return finalChartData;
+};
+
+export const prepareExpenseLineChartData = (data = []) => {
+  const aggregatedDataMap = data.reduce((acc, item) => {
     const dateOnly = item.date.split("T")[0];
-    return {
-      month: moment(dateOnly).format('Do MMM'),
-      amount: item?.amount,
-      category: item?.category,
-    };
-  });
+    const formattedDate = moment(dateOnly).format('Do MMM');
 
-  return chartData;
+    const amount = Number(item?.amount) || 0; 
+
+    if (!acc[dateOnly]) {
+      acc[dateOnly] = {
+        month: formattedDate,
+        amount: 0, 
+        categoryDetails: [], 
+        dateKey: dateOnly,
+      };
+    }
+    
+    acc[dateOnly].amount += amount;
+
+    acc[dateOnly].categoryDetails.push({
+        amount: amount,
+        category: item?.category,
+    });
+
+    return acc;
+  }, {});
+
+  const chartDataArray = Object.values(aggregatedDataMap);
+
+  chartDataArray.sort((a, b) => new Date(a.dateKey) - new Date(b.dateKey));
+  
+  const finalChartData = chartDataArray.map(item => ({
+    month: item.month, 
+    amount: item.amount,
+    categoryDetails: item.categoryDetails 
+  }));
+
+  return finalChartData;
 };

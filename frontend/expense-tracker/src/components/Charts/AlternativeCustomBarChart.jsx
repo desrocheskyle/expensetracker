@@ -19,7 +19,6 @@ const CustomBarChart = ({ data, xKey }) => {
         return index % 2 === 0 ? "#875cf5" : "#cfbefb";
     };
 
-    /*
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
@@ -33,50 +32,7 @@ const CustomBarChart = ({ data, xKey }) => {
         }
 
         return null;
-    };
-    */
-
-    const CustomTooltip = ({ active, payload, label }) => {
-        // Essential check for valid payload data
-        if (active && payload && payload.length) {
-            
-            const dataPoint = payload[0].payload;
-            const totalAmount = dataPoint.amount; // Aggregated Total
-            const details = dataPoint.sourceDetails; // Breakdown array
-
-            if (!details || details.length === 0) {
-                 return null;
-            }
-
-            return (
-                <div className="bg-white shadow-md rounded-lg p-3 border border-gray-300">
-                    {/* Display the Date Label (from XAxis dataKey) */}
-                    <p className="text-sm font-bold text-purple-800 mb-2">
-                        {label} 
-                    </p>
-                    
-                    {/* Display the AGGREGATED TOTAL for the bar */}
-                    <p className="text-md text-gray-700 mb-2 border-b pb-1">
-                        Total Income:{" "}
-                        <span className="text-md font-bold text-gray-900">
-                            ${totalAmount.toFixed(2)}
-                        </span>
-                    </p>
-
-                    {/* Display the breakdown of sources */}
-                    {details.map((item, index) => (
-                        <p key={index} className="text-sm text-gray-600">
-                            {item.source}:{" "}
-                            <span className="text-sm font-medium text-gray-900">${item.amount.toFixed(2)}</span>
-                        </p>
-                    ))}
-                </div>
-            );
-        }
-
-        return null;
-    };
-    
+    };    
 
     return (
         <div className="bg-white mt-6">
