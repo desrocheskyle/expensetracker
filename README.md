@@ -18,9 +18,9 @@ This section provides a visual overview of the key pages and functionality.
 | Page | Description | Screenshot |
 | :--- | :--- | :--- |
 | **Login / Signup** | Secure authentication portal for user access. | ![Screenshot of CashFlow Login Page](login_page.png) |
-| **Dashboard** | Central hub showing summarized financial data and trends. | ![Screenshot of CashFlow Dashboard](assets/screenshots/dashboard.png) |
-| **Income Page** | Dedicated view for adding, viewing, and managing all income streams. | ![Screenshot of CashFlow Income Page](assets/screenshots/income.png) |
-| **Expense Page** | Dedicated view for tracking and categorizing all spending. | ![Screenshot of CashFlow Expense Page](assets/screenshots/expense.png) |
+| **Dashboard** | Central hub showing summarized financial data and trends. | ![Screenshot of CashFlow Dashboard](dashboard_page.png) |
+| **Income Page** | Dedicated view for adding, viewing, and managing all income streams. | ![Screenshot of CashFlow Income Page](income_page.png) |
+| **Expense Page** | Dedicated view for tracking and categorizing all spending. | ![Screenshot of CashFlow Expense Page](expense_page.png) |
 
 ---
 
