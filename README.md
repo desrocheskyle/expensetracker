@@ -9,6 +9,21 @@ A full-stack personal finance application that allows users to track their incom
 * **Data Export:** Download financial reports as Excel/CSV files for offline analysis.
 * **Responsive Design:** Fully optimized for mobile and desktop usage.
 
+---
+
+## 📸 Application Screenshots
+
+This section provides a visual overview of the key pages and functionality.
+
+| Page | Description | Screenshot |
+| :--- | :--- | :--- |
+| **Login / Signup** | Secure authentication portal for user access. | ![Screenshot of CashFlow Login Page](assets/screenshots/login.png) |
+| **Dashboard** | Central hub showing summarized financial data and trends. | ![Screenshot of CashFlow Dashboard](assets/screenshots/dashboard.png) |
+| **Income Page** | Dedicated view for adding, viewing, and managing all income streams. | ![Screenshot of CashFlow Income Page](assets/screenshots/income.png) |
+| **Expense Page** | Dedicated view for tracking and categorizing all spending. | ![Screenshot of CashFlow Expense Page](assets/screenshots/expense.png) |
+
+---
+
 ## 🛠️ Tech Stack
 **Frontend:**
 * React.js (Hooks & Context API)
